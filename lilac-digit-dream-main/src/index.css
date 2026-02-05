@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 280 60% 96%;
+    --foreground: 280 30% 20%;
+
+    --card: 280 50% 98%;
+    --card-foreground: 280 30% 20%;
+
+    --popover: 280 50% 98%;
+    --popover-foreground: 280 30% 20%;
+
+    --primary: 280 60% 70%;
+    --primary-foreground: 280 100% 98%;
+
+    --secondary: 320 50% 85%;
+    --secondary-foreground: 280 30% 20%;
+
+    --muted: 280 30% 92%;
+    --muted-foreground: 280 20% 50%;
+
+    --accent: 300 60% 80%;
+    --accent-foreground: 280 30% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 280 40% 88%;
+    --input: 280 40% 88%;
+    --ring: 280 60% 70%;
+
+    --radius: 1rem;
+
+    /* Calculator specific */
+    --calc-bg: linear-gradient(135deg, hsl(280, 60%, 94%) 0%, hsl(300, 50%, 92%) 50%, hsl(320, 50%, 94%) 100%);
+    --calc-display: linear-gradient(180deg, hsl(280, 40%, 98%) 0%, hsl(280, 50%, 96%) 100%);
+    --calc-button: hsl(280, 50%, 97%);
+    --calc-button-hover: hsl(280, 60%, 94%);
+    --calc-operator: linear-gradient(135deg, hsl(280, 60%, 75%) 0%, hsl(300, 50%, 75%) 100%);
+    --calc-operator-hover: linear-gradient(135deg, hsl(280, 60%, 70%) 0%, hsl(300, 50%, 70%) 100%);
+    --calc-equals: linear-gradient(135deg, hsl(320, 60%, 70%) 0%, hsl(340, 50%, 75%) 100%);
+    --calc-equals-hover: linear-gradient(135deg, hsl(320, 60%, 65%) 0%, hsl(340, 50%, 70%) 100%);
+    --calc-function: hsl(280, 40%, 92%);
+    --calc-shadow: 0 20px 60px -10px hsla(280, 60%, 50%, 0.3);
+    --calc-button-shadow: 0 4px 15px -3px hsla(280, 60%, 50%, 0.2);
+  }
+
+  .dark {
+    --background: 280 30% 8%;
+    --foreground: 280 20% 95%;
+
+    --card: 280 30% 12%;
+    --card-foreground: 280 20% 95%;
+
+    --popover: 280 30% 12%;
+    --popover-foreground: 280 20% 95%;
+
+    --primary: 280 50% 60%;
+    --primary-foreground: 280 100% 98%;
+
+    --secondary: 280 30% 20%;
+    --secondary-foreground: 280 20% 95%;
+
+    --muted: 280 30% 18%;
+    --muted-foreground: 280 20% 60%;
+
+    --accent: 300 40% 30%;
+    --accent-foreground: 280 20% 95%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 280 30% 20%;
+    --input: 280 30% 20%;
+    --ring: 280 50% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Quicksand', sans-serif;
+  }
+}
+
+@layer components {
+  .calc-container {
+    @apply p-8 rounded-3xl max-w-sm mx-auto;
+    background: var(--calc-bg);
+    box-shadow: var(--calc-shadow);
+    border: 2px solid hsla(280, 60%, 70%, 0.5);
+    outline: 3px solid hsla(300, 50%, 80%, 0.3);
+    outline-offset: 3px;
+  }
+
+  .calc-display-container {
+    background: var(--calc-display);
+    @apply rounded-2xl p-6 mb-6;
+    box-shadow: inset 0 2px 10px hsla(280, 60%, 50%, 0.1);
+  }
+
+  .calc-operation {
+    @apply text-right text-sm h-5 text-muted-foreground font-medium;
+  }
+
+  .calc-display {
+    @apply text-right text-4xl font-bold text-foreground truncate;
+    letter-spacing: -1px;
+  }
+
+  .calc-buttons {
+    @apply grid grid-cols-4 gap-3;
+  }
+
+  .calc-button {
+    @apply aspect-square rounded-2xl text-xl font-semibold transition-all duration-200 active:scale-95;
+    background: var(--calc-button);
+    color: hsl(var(--foreground));
+    box-shadow: var(--calc-button-shadow);
+  }
+
+  .calc-button:hover {
+    background: var(--calc-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px -3px hsla(280, 60%, 50%, 0.25);
+  }
+
+  .calc-button-operator {
+    background: var(--calc-operator);
+    color: white;
+    text-shadow: 0 1px 2px hsla(280, 60%, 30%, 0.3);
+  }
+
+  .calc-button-operator:hover {
+    background: var(--calc-operator-hover);
+  }
+
+  .calc-button-function {
+    background: var(--calc-function);
+    color: hsl(var(--primary));
+    font-weight: 600;
+  }
+
+  .calc-button-function:hover {
+    background: hsl(280, 50%, 88%);
+  }
+
+  .calc-button-equals {
+    background: var(--calc-equals);
+    color: white;
+    text-shadow: 0 1px 2px hsla(320, 60%, 30%, 0.3);
+  }
+
+  .calc-button-equals:hover {
+    background: var(--calc-equals-hover);
+  }
+
+  .calc-hint {
+    @apply text-center text-xs text-muted-foreground mt-4 font-medium;
+  }
+}
